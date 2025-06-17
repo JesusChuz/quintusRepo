@@ -1,0 +1,1 @@
+{ "name": "actionstep-syncer", "main": "*.js", "dependencies": { "@azure/functions": "4.7.3" } }
