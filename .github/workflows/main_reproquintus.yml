@@ -3,12 +3,12 @@
   with:
     name: ${{ inputs.artifact-name }}
 
-- name: Log into Azure
-  uses: azure/login@v2
-  with:
-    client-id: ${{ inputs.clientId }}
-    tenant-id: ${{ inputs.tenantId }}
-    subscription-id: ${{ inputs.subscriptionId }}
+ - name: Login to Azure
+        uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_041642DD915C4917838062768CDE865C }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_818058FDB2F445C8B61D07EA19C19F15 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_44F04953CA624639A7C03BA03F561B0C }}
 
 - name: Deploy Functions
   uses: azure/functions-action@v1
