@@ -12,7 +12,7 @@ jobs:
     steps:
       # Step 1: Checkout the code
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       # Step 2: Set up environment (Node.js, .NET, etc.)
       - name: Set up Node.js
@@ -28,7 +28,7 @@ jobs:
           
       # Step 4: Upload the artifact (e.g., build output)
       - name: Upload Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: dist  # This name will be used in the composite action
           path: ./dist  # Path to the build output folder or file
