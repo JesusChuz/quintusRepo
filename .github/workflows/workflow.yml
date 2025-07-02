@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Run Deploy Functions composite action
-        uses: ./.github/actions/deploy-functions
+        uses: ./.github/actions/my-composite-action
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_041642DD915C4917838062768CDE865C }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_818058FDB2F445C8B61D07EA19C19F15 }}
