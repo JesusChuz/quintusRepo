@@ -2,7 +2,16 @@ name: Deploy Functions
 description: Login to azure and deploy functions
 
 inputs:
-  app-name: reproquintus
+  clientId:
+    description: Azure client ID
+    required: true
+  tenantId:
+    description: Azure tenant ID
+    required: true
+  subscriptionId:
+    description: Azure subscription ID
+    required: true
+  app-name:
     description: Azure function app name
     required: true
   artifact-name:
@@ -21,9 +30,9 @@ runs:
     - name: Log into Azure
       uses: azure/login@v2
       with:
-        client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_041642DD915C4917838062768CDE865C }}
-        tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_818058FDB2F445C8B61D07EA19C19F15 }}
-        subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_44F04953CA624639A7C03BA03F561B0C }}
+        client-id: ${{ inputs.clientId }}
+        tenant-id: ${{ inputs.tenantId }}
+        subscription-id: ${{ inputs.subscriptionId }}
 
     - name: Deploy Functions
       uses: azure/functions-action@v1
