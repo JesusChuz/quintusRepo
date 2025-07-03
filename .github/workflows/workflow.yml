@@ -23,7 +23,7 @@ jobs:
       # Step 3: Install dependencies and build the artifact
       - name: Install dependencies and build
         run: |
-          npm install  # Or the relevant build command for your project
+          npm install  
 
       # Step 4: Upload the artifact (e.g., build output)
       - name: Upload Artifact
@@ -39,5 +39,5 @@ jobs:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_041642DD915C4917838062768CDE865C }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_818058FDB2F445C8B61D07EA19C19F15 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_44F04953CA624639A7C03BA03F561B0C }}
-          app-name: my-function-app
-          artifact-name: dist  # Ensure this matches the artifact uploaded above
+          app-name: reproquintus
+          artifact-name: dist  
