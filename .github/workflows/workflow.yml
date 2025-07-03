@@ -33,7 +33,7 @@ jobs:
           path: ./dist  # Path to the build output folder or file
 
       # Step 5: Run Deploy Functions composite action
-      - name: Run Deploy Functions composite action
+      - name: Run Deploy Functions 
         uses: ./.github/actions/action.yml
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_041642DD915C4917838062768CDE865C }}
