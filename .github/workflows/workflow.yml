@@ -38,7 +38,7 @@ jobs:
 
       # Step 5: Run Deploy Functions composite action
       - name: Run Deploy Functions 
-        uses: ./.github/actions/action.yml
+        uses: ././.github/actions
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_041642DD915C4917838062768CDE865C }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_818058FDB2F445C8B61D07EA19C19F15 }}
