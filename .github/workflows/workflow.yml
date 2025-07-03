@@ -24,7 +24,7 @@ jobs:
       - name: Install dependencies and build
         run: |
           npm install  # Or the relevant build command for your project
-          npm run build  # Or any other build step
+         
           
       # Step 4: Upload the artifact (e.g., build output)
       - name: Upload Artifact
