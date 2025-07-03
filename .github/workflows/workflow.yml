@@ -14,7 +14,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # Step 2: Set up environment (Node.js, .NET, etc.)
+      # Step 2: Set up Node.js environment
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
@@ -24,8 +24,8 @@ jobs:
       - name: Install dependencies and build
         run: |
           npm install  # Or the relevant build command for your project
-         
-          
+          npm run build  # Add this if you have a build script in package.json
+
       # Step 4: Upload the artifact (e.g., build output)
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
@@ -41,4 +41,4 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_818058FDB2F445C8B61D07EA19C19F15 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_44F04953CA624639A7C03BA03F561B0C }}
           app-name: my-function-app
-          artifact-name: dist
+          artifact-name: dist  # Ensure this matches the artifact uploaded above
