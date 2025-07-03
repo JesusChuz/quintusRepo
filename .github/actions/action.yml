@@ -1,0 +1,42 @@
+name: Deploy Functions
+description: Login to azure and deploy functions
+
+inputs:
+  clientId:
+    description: Azure client ID
+    required: true
+  tenantId:
+    description: Azure tenant ID
+    required: true
+  subscriptionId:
+    description: Azure subscription ID
+    required: true
+  app-name:
+    description: Azure function app name
+    required: true
+  artifact-name:
+    description: Name of the artifact to download, defaults to dist
+    required: false
+    default: dist
+
+runs:
+  using: composite
+  steps:
+    - name: Download ${{ inputs.artifact-name }} file from artifacts
+      uses: actions/download-artifact@v4
+      with:
+        name: ${{ inputs.artifact-name }}
+
+    - name: Log into Azure
+      uses: azure/login@v2
+      with:
+        client-id: ${{ inputs.clientId }}
+        tenant-id: ${{ inputs.tenantId }}
+        subscription-id: ${{ inputs.subscriptionId }}
+
+    - name: Deploy Functions
+      uses: azure/functions-action@v1
+      with:
+        app-name: ${{ inputs.app-name }}
+        sku: flexconsumption
+        remote-build: true
