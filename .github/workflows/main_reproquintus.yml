@@ -29,10 +29,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: dist
-          path: |
-            host.json
-            run.js
-            package.json
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
