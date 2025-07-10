@@ -22,9 +22,6 @@ jobs:
         with:
           node-version: ${{ env.NODE_VERSION }}
 
-      - name: Install dependencies
-        run: npm install
-
       - name: Upload deployment files
         uses: actions/upload-artifact@v4
         with:
