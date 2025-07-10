@@ -34,6 +34,7 @@ jobs:
         with:
           app-name: 'reproquintus'
           package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
+          run: ls -R ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
           sku: flexconsumption
           remote-build: true
 
