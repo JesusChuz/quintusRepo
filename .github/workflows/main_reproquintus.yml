@@ -33,8 +33,6 @@ jobs:
         id: fa
         with:
           app-name: 'reproquintus'
-          slot-name: 'Production'
-          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
           sku: flexconsumption
           remote-build: true
 
