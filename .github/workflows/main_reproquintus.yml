@@ -1,6 +1,3 @@
-# Docs for the Azure Web Apps Deploy action: https://github.com/azure/functions-action
-# More GitHub Actions for Azure: https://github.com/Azure/actions
-
 name: Build and deploy Node.js project to Azure Function App - reproquintus
 
 on:
@@ -10,17 +7,50 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.' # set this to the path to your web app project, defaults to the repository root
-  NODE_VERSION: '22' # set this to the node version to use (supports 8.x, 10.x, 12.x)
-  
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.'  # This will point to the extracted artifact
+  NODE_VERSION: '22'
+
 jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Upload deployment files
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: |
+            host.json
+            run.js
+            package.json
+
   deploy:
     runs-on: ubuntu-latest
+    needs: build
     permissions:
-      id-token: write #This is required for requesting the JWT
-      contents: read #This is required for actions/checkout
+      id-token: write
+      contents: read
 
-    steps:             
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: .
+
+      - name: List contents for verification
+        run: ls -R .
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -28,14 +58,9 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_065BD260CCC449E3A5AEADA393E3FBA5 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_986EC33713FC4ABF96BCE74850B3B233 }}
 
-      - name: 'Run Azure Functions Action'
+      - name: Deploy to Azure Functions
         uses: Azure/functions-action@v1
-        id: fa
         with:
           app-name: 'reproquintus'
-          package: ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
-          run: ls -R ${{ env.AZURE_FUNCTIONAPP_PACKAGE_PATH }}
           sku: flexconsumption
           remote-build: true
-
-          
